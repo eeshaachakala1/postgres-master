@@ -8,7 +8,7 @@ build:
     env: DEV
     build_file: none
     output_files: output/*.zip
-    image_template: postgres_master-12.6
+    image_template: postgres_master-12.7
     
 deploy:
     context: eeshaachakala1/DEV
@@ -47,4 +47,4 @@ properties:
       vault: APPUSER_PASSWORD
     APPZ_RESTORE_TOKEN: 20200810-1217
     APPZ_LOAD_TOKEN: 20200810-1217
-    revision : 60
+    revision : 62
