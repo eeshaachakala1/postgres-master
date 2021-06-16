@@ -1,18 +1,18 @@
 app:
     name: Postgres Master
     code: POSTGRES
-    notify: appzdev@cloudbourne.co
+    notify: eachakala@ecloudcontrol.com
     
 build:
-    version: 12.2
+    version: 12.0
     env: DEV
     build_file: none
     output_files: output/*.zip
-    image_template: postgres_master-12.2
+    image_template: postgres_master-12.6
     image_name: alpha/postgres_master
     
 deploy:
-    context: alpha/DEV
+    context: eeshaachakala1/DEV
     type: statefulset
     replicas: 1
     port:
@@ -40,6 +40,8 @@ properties:
     POSTGRESQL_SYNCHRONOUS_COMMIT_MODE: on
     POSTGRESQL_NUM_SYNCHRONOUS_REPLICAS: 1
     POSTGRESQL_REP_USER: replica
+    POSTGRESQL_SPRINGBOOTWEB_PASSWORD:
+          vault: POSTGRESQL_SPRINGBOOTWEB_PASSWORD
     PGPASSWORD: 
       vault: PGPASSWORD
     APPUSER_PASSWORD:
