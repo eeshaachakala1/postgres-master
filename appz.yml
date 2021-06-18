@@ -51,4 +51,4 @@ properties:
     DAV_USERPASSWORD:
       vault: DAV_USERPASSWORD
     WEBDAV_BACKUP_URL: http://webdav-2-0
-    revision : 63
+    revision : 64
