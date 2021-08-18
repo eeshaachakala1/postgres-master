@@ -4,15 +4,16 @@ app:
     notify: eachakala@ecloudcontrol.com
     
 build:
-    version: 12.0
+    version: 12.2
     env: DEV
     build_file: none
     output_files: output/*.zip
-    image_template: postgres_master-12.7
+    image_template: postgres_master-12.2
     
 deploy:
-    context: eeshaachakala1/DEV
+    context: anushab7/DEV
     type: statefulset
+    ingress: none
     replicas: 1
     port:
     - 5432
@@ -23,10 +24,7 @@ volumes:
     name: data
     size: 5Gi
     mode: ReadWriteOnce
-    class: microk8s-hostpath   
-    
-monitor:
-    notify: appzops@cloudbourne.co      
+    class: microk8s-hostpath      
     
 properties:
     POSTGRESQL_REPLICATION_MODE: master
@@ -36,19 +34,15 @@ properties:
     POSTGRESQL_PORT: 5432
     POSTGRESQL_PASSWORD: 
       vault: POSTGRESQL_PASSWORD
+    POSTGRESQL_SPRINGBOOTWEB_PASSWORD:
+       vault: POSTGRESQL_SPRINGBOOTWEB_PASSWORD
     POSTGRESQL_SYNCHRONOUS_COMMIT_MODE: on
     POSTGRESQL_NUM_SYNCHRONOUS_REPLICAS: 1
     POSTGRESQL_REP_USER: replica
-    POSTGRESQL_SPRINGBOOTWEB_PASSWORD:
-          vault: POSTGRESQL_SPRINGBOOTWEB_PASSWORD
     PGPASSWORD: 
       vault: PGPASSWORD
     APPUSER_PASSWORD:
       vault: APPUSER_PASSWORD
-    PUSH_BACKUP_WEBDAV: True
-    DAV_FOLDER: DBBACKUP
-    DAV_USER: appz
-    DAV_USERPASSWORD:
-      vault: DAV_USERPASSWORD
-    WEBDAV_BACKUP_URL: http://webdav-2-0
-    revision : 64
+    APPZ_RESTORE_TOKEN: 20200818-1716
+    APPZ_LOAD_TOKEN: 20200818-1716
+    revision : 56
